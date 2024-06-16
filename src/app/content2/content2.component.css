@@ -1,0 +1,39 @@
+
+  .container {
+    max-height: 80vh;
+    height: auto;
+    /* overflow-y: scroll; */
+  
+    /* Menyembunyikan scrollbar di semua browser */
+    scrollbar-width: thin; /* "thin", "auto", atau "none" */
+    scrollbar-color: transparent transparent; /* warna thumb dan track dijadikan transparan */
+  
+    /* Menyembunyikan scrollbar di WebKit */
+    ::-webkit-scrollbar {
+      width: 5px; /* Lebar scrollbar sangat tipis */
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent; /* Warna track dijadikan transparan */
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: transparent; /* Warna thumb dijadikan transparan */
+      border-radius: 10px; /* Bentuk sudut thumb diatur */
+      border: 2px solid transparent; /* Garis tepi scrollbar diatur */
+    }
+  }
+  
+  h1 {
+    margin: 10px;
+  }
+
+  .form-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%; /* Lebar form container, sesuaikan dengan kebutuhan Anda */
+  max-width: 400px; /* Lebar maksimum form container, sesuaikan dengan kebutuhan Anda */
+  margin-bottom: 30px ; /* Pusatkan form di tengah halaman, sesuaikan dengan kebutuhan Anda */
+}
+
+.form-field {
+  margin-bottom: 10px; /* Jarak antara setiap form field */
+}

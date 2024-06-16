@@ -1,0 +1,77 @@
+<div class="container">
+  <h1 id="user-heading">Users</h1>
+
+  <!-- Form untuk menambah user baru -->
+  <form
+    [formGroup]="userForm"
+    (ngSubmit)="onSubmit()"
+    class="form-container"
+    id="form-user"
+  >
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">
+      {{ isUpdate ? "Update" : "Create" }} User
+    </button>
+    <button
+      mat-raised-button
+      color="Cancel"
+      *ngIf="isUpdate"
+      style="margin-top: 10px"
+      type="button"
+      (click)="cancelUpdate()"
+    >
+      Cancel Update
+    </button>
+  </form>
+
+  <!-- Tabel untuk menampilkan daftar pengguna -->
+  <table mat-table [dataSource]="users" class="mat-elevation-z8 table-custom">
+    <!-- Kolom Nama -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+    </ng-container>
+
+    <!-- Kolom Email -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <!-- Kolom Street -->
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef>Street</th>
+      <td mat-cell *matCellDef="let user">{{ user.address.city }}</td>
+    </ng-container>
+
+    <!-- Kolom Actions (Edit & Delete) -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let user">
+        <button mat-icon-button color="primary" (click)="editUser(user)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <p-confirmPopup></p-confirmPopup>
+        <button mat-icon-button color="warn" (click)="confirm($event, user.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Baris Header -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Baris Data -->
+    <tr mat-row *matRowDef="let user; columns: displayedColumns"></tr>
+  </table>
+</div>
